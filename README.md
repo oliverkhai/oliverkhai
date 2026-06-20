@@ -17,10 +17,7 @@ const GALLERY = [
 The `id` is the part after `youtu.be/` or `watch?v=` in the YouTube URL.
 
 ### Swap the hero (primary) video
-Change `HERO_VIDEO`:
-```js
-const HERO_VIDEO = { id: "uqIptam0jCg", title: "Kickoff Highlights" };
-```
+The hero is an **Instagram embed**. To change it, open the reel/post on Instagram → **⋯ → Embed → Copy embed code**, then replace the `<blockquote class="instagram-media">…</blockquote>` inside the `.ig-embed` div in the **PRIMARY HIGHLIGHT VIDEO** section. The `embed.js` script at the bottom of the file renders it automatically — no other change needed.
 
 ### Update a stat or profile field
 Stats live in the **KEY STATS** and **ATHLETIC PROFILE** sections of the HTML — edit the number in place. Athlete contact details are in the `ATHLETE` config object and the **CONTACT** section.
