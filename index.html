@@ -7,10 +7,11 @@
 <meta name="description" content="Oliver Mesic — Kicker / Punter, Class of 2028, Del Norte HS, San Diego CA. Highlight film, stats, and contact for college recruiters.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<!-- One real serif webfont for the display face. Body stays on the system sans. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap">
 <style>
   /* ============================================================
-     CONFIG / DESIGN TOKENS
+     DESIGN TOKENS
      ============================================================ */
   :root {
     --ink: #0f0f0e;
@@ -19,8 +20,9 @@
     --gray-1: #6b6b66;
     --gray-2: #a8a8a2;
     --hairline: #d8d8d2;
-    --display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* Editorial serif for name + numbers; clean system sans for everything else. */
+    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,304 +35,273 @@
     font-family: var(--sans);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
   }
 
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
 
-  section { padding: 56px 0; border-bottom: 1px solid var(--hairline); }
-  section:last-child { border-bottom: none; }
+  section { padding: 64px 0; border-bottom: 1px solid var(--hairline); }
+  section:last-of-type { border-bottom: none; }
 
+  /* Editorial eyebrow: tiny uppercase label with a short gold tick. */
   .eyebrow {
-    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--gray-1); font-weight: 600; margin-bottom: 18px;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gray-1); font-weight: 600; margin-bottom: 22px;
+    display: flex; align-items: center;
+  }
+  .eyebrow::before {
+    content: ''; width: 26px; height: 2px; background: var(--gold);
+    margin-right: 12px; flex: 0 0 auto;
   }
 
   /* ============================================================
-     HEADER / HERO
+     HEADER / HERO  — name + film, together
      ============================================================ */
   header { border-bottom: 3px solid var(--ink); }
 
-  .hero { padding: 56px 0 48px; }
+  .hero { padding: 60px 0 40px; }
 
   .hero .tag {
-    display: inline-block; font-size: 12px; letter-spacing: 0.14em;
+    display: inline-block; font-size: 11px; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--gold); font-weight: 700;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
   .hero h1 {
-    font-family: var(--display); font-weight: 700;
-    font-size: clamp(40px, 9vw, 76px); line-height: 0.98;
-    letter-spacing: -0.01em; margin-bottom: 16px;
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(52px, 12vw, 104px); line-height: 0.92;
+    letter-spacing: -0.025em; margin-bottom: 22px;
   }
 
   .hero .meta {
-    font-size: 15px; color: var(--gray-1); margin-bottom: 28px;
+    font-family: var(--sans);
+    font-size: 14px; letter-spacing: 0.01em; color: var(--gray-1);
+    text-transform: uppercase; font-weight: 500;
   }
-  .hero .meta span { white-space: nowrap; }
-  .hero .meta .sep { color: var(--gray-2); margin: 0 8px; }
-
-  .btn {
-    display: inline-block; background: var(--ink); color: var(--bg);
-    font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
-    text-decoration: none; padding: 13px 24px; border-radius: 2px;
-    transition: background 0.15s ease;
-  }
-  .btn:hover { background: #2c2c28; }
-  .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .hero .meta .sep { color: var(--gray-2); margin: 0 10px; }
 
   /* ============================================================
-     RESPONSIVE 16:9 YOUTUBE EMBED
+     PRIMARY FILM
      ============================================================ */
-  .video-frame {
-    position: relative; width: 100%; aspect-ratio: 16 / 9;
-    background: var(--ink); border: 1px solid var(--hairline);
-    overflow: hidden;
+  .ig-embed { display: flex; justify-content: center; }
+  .ig-embed .instagram-media { margin: 0 auto !important; }
+
+  .film-credit {
+    margin-top: 18px; font-size: 14px; color: var(--gray-1);
+    max-width: 540px;
   }
-  .video-frame iframe {
-    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  .film-credit strong { color: var(--ink); font-weight: 600; }
+
+  /* ============================================================
+     MEASURABLES — data sheet
+     ============================================================ */
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 2px solid var(--gold); border-left: 1px solid var(--hairline);
+  }
+  .stat {
+    border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+    padding: 28px 22px;
+  }
+  .stat .num {
+    font-family: var(--display); font-size: clamp(34px, 6.5vw, 52px);
+    line-height: 1; font-weight: 600; letter-spacing: -0.02em;
+  }
+  .stat .num small { font-size: 0.42em; color: var(--gray-1); font-weight: 400; letter-spacing: 0; }
+  .stat .label {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); margin-top: 14px; font-weight: 600;
+  }
+  .stat .note {
+    font-size: 12px; color: var(--gray-1); margin-top: 6px; line-height: 1.4;
+  }
+  .stat-source {
+    margin-top: 18px; font-size: 12px; color: var(--gray-2); line-height: 1.5;
   }
 
-  /* Click-to-load thumbnail button */
+  /* ============================================================
+     FILM GALLERY (the one interactive feature)
+     ============================================================ */
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .gallery figure { margin: 0; }
+  .gallery figcaption { margin-top: 12px; }
+  .gallery .g-title { font-weight: 600; font-size: 15px; }
+  .gallery .g-date {
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gray-1); margin-top: 3px;
+  }
+
+  .video-frame {
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    background: var(--ink); border: 1px solid var(--hairline); overflow: hidden;
+  }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
   .yt-lite {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    border: 0; padding: 0; cursor: pointer; background-size: cover;
-    background-position: center; background-color: var(--ink);
+    border: 0; padding: 0; cursor: pointer;
+    background-size: cover; background-position: center; background-color: var(--ink);
   }
   .yt-lite::after {
     content: ''; position: absolute; inset: 0;
-    background: rgba(15,15,14,0.18); transition: background 0.15s ease;
+    background: rgba(15,15,14,0.20); transition: background 0.15s ease;
   }
-  .yt-lite:hover::after { background: rgba(15,15,14,0.05); }
+  .yt-lite:hover::after { background: rgba(15,15,14,0.04); }
   .yt-lite .play {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%); z-index: 1;
-    width: 68px; height: 48px; border-radius: 10px;
-    background: rgba(15,15,14,0.78); display: flex;
-    align-items: center; justify-content: center;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;
+    width: 66px; height: 46px; border-radius: 10px;
+    background: rgba(15,15,14,0.78); display: flex; align-items: center; justify-content: center;
     transition: background 0.15s ease;
   }
   .yt-lite:hover .play { background: var(--gold); }
   .yt-lite .play::before {
-    content: ''; border-style: solid; border-width: 11px 0 11px 18px;
-    border-color: transparent transparent transparent var(--bg);
-    margin-left: 4px;
+    content: ''; border-style: solid; border-width: 10px 0 10px 17px;
+    border-color: transparent transparent transparent var(--bg); margin-left: 4px;
   }
   .yt-lite:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
-  /* Instagram hero embed */
-  .ig-embed { display: flex; justify-content: center; }
-  .ig-embed .instagram-media { margin: 0 auto !important; }
-
   /* ============================================================
-     KEY STATS
+     ACADEMICS — one line
      ============================================================ */
-  .stat-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--ink); border-left: 1px solid var(--hairline);
+  .academics {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(22px, 3.4vw, 30px); line-height: 1.25; letter-spacing: -0.01em;
   }
-  .stat {
-    border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
-    padding: 24px 20px;
-  }
-  .stat .num {
-    font-family: var(--display); font-size: clamp(30px, 6vw, 44px);
-    line-height: 1; font-weight: 700;
-  }
-  .stat .num small { font-size: 0.5em; color: var(--gray-1); font-weight: 400; }
-  .stat .label {
-    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--gray-1); margin-top: 10px;
-  }
-  .stat .pill {
-    display: inline-block; margin-top: 12px; font-size: 11px;
-    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
-    color: var(--gold); border: 1px solid var(--gold);
-    padding: 3px 8px; border-radius: 2px;
-  }
-
-  /* ============================================================
-     VIDEO GALLERY
-     ============================================================ */
-  .gallery {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-  }
-  .gallery figure { margin: 0; }
-  .gallery figcaption { margin-top: 10px; }
-  .gallery .g-title { font-weight: 600; font-size: 15px; }
-  .gallery .g-date { font-size: 13px; color: var(--gray-1); margin-top: 2px; }
-
-  /* ============================================================
-     PROFILE / TWO-COLUMN DATA
-     ============================================================ */
-  .data-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--ink); border-left: 1px solid var(--hairline);
-  }
-  .data-cell {
-    border-right: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
-    padding: 18px 20px;
-  }
-  .data-cell .k {
-    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--gray-1);
-  }
-  .data-cell .v {
-    font-family: var(--display); font-size: 26px; font-weight: 700; margin-top: 4px;
-  }
+  .academics .gpa { color: var(--ink); }
+  .academics .rest { color: var(--gray-1); }
 
   /* ============================================================
      CONTACT
      ============================================================ */
-  .contact-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
+  h2.section-title {
+    font-family: var(--display); font-size: clamp(30px, 5vw, 44px);
+    font-weight: 600; margin-bottom: 32px; letter-spacing: -0.02em; line-height: 1;
   }
+  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px 40px; }
   .contact-block h3 {
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--gray-1); margin-bottom: 10px; font-weight: 600;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gray-1); margin-bottom: 12px; font-weight: 600;
   }
-  .contact-block a, .contact-block p { font-size: 16px; color: var(--ink); }
+  .contact-block a, .contact-block p, .contact-block .line { font-size: 16px; color: var(--ink); }
   .contact-block a { text-decoration: none; border-bottom: 1px solid var(--gold); }
   .contact-block a:hover { color: var(--gold); }
-  .contact-block .line { margin-bottom: 6px; }
+  .contact-block a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .contact-block .line { margin-bottom: 7px; }
 
-  .todo {
-    color: var(--gray-2); font-style: italic; font-size: 14px;
-  }
+  .todo { color: var(--gray-2); font-style: italic; font-size: 14px; }
 
-  h2.section-title {
-    font-family: var(--display); font-size: clamp(24px, 4vw, 32px);
-    font-weight: 700; margin-bottom: 28px; letter-spacing: -0.01em;
-  }
-
-  footer {
-    padding: 32px 0 48px; font-size: 13px; color: var(--gray-2);
-  }
+  footer { padding: 36px 0 52px; font-size: 12px; letter-spacing: 0.04em; color: var(--gray-2); }
 
   /* ============================================================
-     RESPONSIVE
+     QUIET MOTION — fade + rise on entry
      ============================================================ */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
   @media (max-width: 640px) {
     .stat-grid { grid-template-columns: 1fr; }
     .gallery { grid-template-columns: 1fr; }
-    .data-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
-    section { padding: 40px 0; }
+    section { padding: 44px 0; }
+    .hero { padding: 44px 0 32px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     CONFIG — edit Oliver's data and videos here
+     CONFIG — edit Oliver's data, stats, and videos here.
+     Adding a stat or a video = one new entry in the arrays below.
      ============================================================ -->
 <script>
   const ATHLETE = {
     name: "Oliver Mesic",
     position: "Kicker / Punter",
     classYear: "2028",
-    school: "Del Norte High School",
+    school: "Del Norte HS",
     location: "San Diego, CA",
     height: "5'10\"",
     weight: "145 lbs",
-    gpa: "4.07 (weighted)",
+    gpa: "4.07",
     phone: "858-242-7999",
     email: "oliverkhai@gmail.com",
-    headCoach: "Nick Barnett"
+    headCoach: "Nick Barnett",
+    kickingCoach: "Nick Novak"
   };
 
-  // Gallery — add a video by appending one entry { id, title, date }
+  // Measurables. Every stat carries its honest context in `note`.
+  // num = big figure, unit = small trailing unit, label = what it is, note = context + date.
+  const STATS = [
+    { num: "53", unit: "yds", label: "Long Field Goal", note: "Practice · charted by N. Novak" },
+    { num: "4.5", unit: "sec", label: "Punt Hang Time", note: "Practice" },
+    { num: "TB", unit: "", label: "Kickoffs", note: "Consistent touchbacks · practice" }
+  ];
+
+  // Film gallery — add a video by appending one entry { id, title, date }.
   const GALLERY = [
-    { id: "uqIptam0jCg", title: "Kickoff Highlights", date: "2026 Season" },
-    { id: "-HE5mQYDSqo", title: "Punting Highlights", date: "2026 Season" }
+    { id: "uqIptam0jCg", title: "Kickoff Reel", date: "2026 Season" },
+    { id: "-HE5mQYDSqo", title: "Punting Reel", date: "2026 Season" }
     // { id: "[TODO]", title: "Long FG Compilation", date: "[TODO]" },
   ];
 </script>
 
+<!-- ============================================================
+     HERO  (name + meta)
+     ============================================================ -->
 <header>
   <div class="wrap hero">
-    <span class="tag">Kicker / Punter • Class of 2028</span>
+    <span class="tag">Kicker / Punter · Class of 2028</span>
     <h1>Oliver Mesic</h1>
     <p class="meta">
-      <span>Del Norte HS</span><span class="sep">/</span><span>San Diego, CA</span>
-      <span class="sep">/</span><span>5&apos;10&quot;, 145 lbs</span>
-      <span class="sep">/</span><span>GPA 4.07</span>
+      <span>Del Norte HS</span><span class="sep">·</span><span>San Diego, CA</span><span class="sep">·</span><span>5&apos;10&quot; / 145 lbs</span>
     </p>
-    <a class="btn" href="#film">Watch film ▾</a>
   </div>
 </header>
 
-<!-- PRIMARY HIGHLIGHT VIDEO (Instagram) -->
-<section id="film" aria-label="Primary highlight video">
+<!-- PRIMARY FILM (Instagram reel — posted on Nick Novak's account) -->
+<section id="film" class="reveal" aria-label="Highlight film">
   <div class="wrap">
-    <p class="eyebrow">Highlight Film</p>
+    <p class="eyebrow">Highlight film</p>
     <div class="ig-embed">
       <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DZSsN5fCZoV/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DZSsN5fCZoV/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DZSsN5fCZoV/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Nick Novak (@8nicknovak)</a></p></div></blockquote>
     </div>
+    <p class="film-credit">Highlight film via <strong>Nick Novak</strong> — 12-year NFL kicker and Oliver's kicking coach (<a href="https://www.instagram.com/8nicknovak/" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--gold);text-decoration:none;">@8nicknovak</a>).</p>
   </div>
 </section>
 
-<!-- KEY STATS -->
-<section aria-label="Key stats">
+<!-- MEASURABLES -->
+<section class="reveal" aria-label="Measurables">
   <div class="wrap">
-    <p class="eyebrow">By the numbers</p>
-    <div class="stat-grid">
-      <div class="stat">
-        <div class="num">53<small> yds</small></div>
-        <div class="label">Best Field Goal</div>
-        <span class="pill">D1 baseline</span>
-      </div>
-      <div class="stat">
-        <div class="num">4.5<small> sec</small></div>
-        <div class="label">Punt Hang Time</div>
-        <span class="pill">Dual-threat</span>
-      </div>
-      <div class="stat">
-        <div class="num">Touchbacks</div>
-        <div class="label">Kickoffs — consistent</div>
-        <span class="pill">Verified on film</span>
-      </div>
-    </div>
+    <p class="eyebrow">Measurables</p>
+    <div class="stat-grid" id="statGrid"></div>
+    <p class="stat-source">Figures from practice and charted sessions, 2026. Game results added through the season.</p>
   </div>
 </section>
 
-<!-- VIDEO GALLERY -->
-<section aria-label="Video gallery">
+<!-- FILM GALLERY -->
+<section class="reveal" aria-label="More film">
   <div class="wrap">
-    <h2 class="section-title">More film</h2>
+    <p class="eyebrow">More film</p>
     <div class="gallery" id="gallery"></div>
   </div>
 </section>
 
-<!-- ATHLETIC PROFILE -->
-<section aria-label="Athletic profile and academics">
+<!-- ACADEMICS -->
+<section class="reveal" aria-label="Academics">
   <div class="wrap">
-    <p class="eyebrow">Athletic profile</p>
-    <div class="data-grid">
-      <div class="data-cell"><div class="k">Class</div><div class="v">2028</div></div>
-      <div class="data-cell"><div class="k">Height</div><div class="v">5&apos;10&quot;</div></div>
-      <div class="data-cell"><div class="k">Weight</div><div class="v">145 lbs</div></div>
-      <div class="data-cell"><div class="k">GPA (weighted)</div><div class="v">4.07</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- AWARDS / CAMP RESULTS -->
-<section aria-label="Awards and camp results">
-  <div class="wrap">
-    <h2 class="section-title">Awards &amp; camp results</h2>
-    <p class="todo">[TODO: All-state / all-conference honors and kicking-camp results
-      (Chris Sailer, Kohl's) — added as earned.]</p>
+    <p class="eyebrow">Academics</p>
+    <p class="academics"><span class="gpa">GPA 4.07 weighted.</span> <span class="rest">Del Norte HS, Class of 2028.</span></p>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section aria-label="Contact">
+<section class="reveal" aria-label="Contact">
   <div class="wrap">
     <h2 class="section-title">Contact</h2>
     <div class="contact-grid">
@@ -341,23 +312,19 @@
         <div class="line"><a href="mailto:oliverkhai@gmail.com">oliverkhai@gmail.com</a></div>
       </div>
       <div class="contact-block">
+        <h3>Kicking Coach</h3>
+        <div class="line">Nick Novak — 12-yr NFL K</div>
+        <div class="line todo">[TODO: contact — confirm with Novak before publishing]</div>
+      </div>
+      <div class="contact-block">
         <h3>Head Coach</h3>
         <div class="line">Nick Barnett — Del Norte HS</div>
         <div class="line todo">[TODO: coach phone / email]</div>
       </div>
       <div class="contact-block">
-        <h3>Kicking Coach</h3>
-        <div class="line">Nick Novak</div>
-        <div class="line todo">[TODO: phone / email]</div>
-      </div>
-      <div class="contact-block">
-        <h3>Recruiting profiles</h3>
-        <div class="line"><span class="todo">[TODO: Hudl link]</span></div>
-        <div class="line"><span class="todo">[TODO: NCSA / FieldLevel link]</span></div>
-      </div>
-      <div class="contact-block">
-        <h3>Social</h3>
-        <div class="line todo">[TODO: X / Instagram]</div>
+        <h3>Film &amp; profiles</h3>
+        <div class="line"><a href="https://www.instagram.com/8nicknovak/" target="_blank" rel="noopener">Instagram film</a></div>
+        <div class="line todo">[TODO: Hudl / NCSA / FieldLevel link]</div>
       </div>
     </div>
   </div>
@@ -368,11 +335,24 @@
 </footer>
 
 <script>
-  // YouTube thumbnail (nocookie + click-to-load for fast page load)
-  function thumb(id) { return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
-  function embedUrl(id) {
-    return `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
-  }
+  /* ---- Measurables ---- */
+  (function () {
+    const grid = document.getElementById('statGrid');
+    STATS.forEach(function (s) {
+      const cell = document.createElement('div');
+      cell.className = 'stat';
+      const unit = s.unit ? ' <small>' + s.unit + '</small>' : '';
+      cell.innerHTML =
+        '<div class="num">' + s.num + unit + '</div>' +
+        '<div class="label">' + s.label + '</div>' +
+        '<div class="note">' + s.note + '</div>';
+      grid.appendChild(cell);
+    });
+  })();
+
+  /* ---- Film gallery: YouTube thumbnails, load iframe only on click ---- */
+  function thumb(id) { return 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; }
+  function embedUrl(id) { return 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0'; }
   function loadInto(frame, id, label) {
     const iframe = document.createElement('iframe');
     iframe.src = embedUrl(id);
@@ -382,8 +362,6 @@
     frame.innerHTML = '';
     frame.appendChild(iframe);
   }
-
-  // Gallery
   (function () {
     const grid = document.getElementById('gallery');
     GALLERY.forEach(function (v) {
@@ -393,16 +371,32 @@
       const btn = document.createElement('button');
       btn.className = 'yt-lite';
       btn.setAttribute('aria-label', 'Play ' + v.title);
-      btn.style.backgroundImage = `url('${thumb(v.id)}')`;
+      btn.style.backgroundImage = "url('" + thumb(v.id) + "')";
       btn.innerHTML = '<span class="play" aria-hidden="true"></span>';
       btn.addEventListener('click', function () { loadInto(frame, v.id, v.title); });
       frame.appendChild(btn);
       const cap = document.createElement('figcaption');
-      cap.innerHTML = `<div class="g-title">${v.title}</div><div class="g-date">${v.date}</div>`;
+      cap.innerHTML = '<div class="g-title">' + v.title + '</div><div class="g-date">' + v.date + '</div>';
       fig.appendChild(frame);
       fig.appendChild(cap);
       grid.appendChild(fig);
     });
+  })();
+
+  /* ---- Quiet fade + rise on section entry ---- */
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
   })();
 
   document.getElementById('year').textContent = new Date().getFullYear();
